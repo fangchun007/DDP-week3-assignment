@@ -1,0 +1,48 @@
+---
+title: "Week 3 Assignment"
+author: "Chun Fang"
+date: "11/30/2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Plotly
+
+This is a presentation produced by R Markdown. We create two interactive graphics using plotly, followed with an interactive maps showing the place of my campus via leaflet.
+
+To suppress warnings and messages, we use the commands `warning = FALSE, message = FALSE, echo = TRUE`.
+
+```{r, warning = FALSE, message = FALSE, cache = FALSE, echo = TRUE}
+library(plotly)
+```
+
+***
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+plot_ly(mtcars, x = ~wt, y = ~mpg, 
+        mode = "markers",
+        color = ~wt,
+        text = ~paste("Weight:", wt))
+```
+
+***
+
+```{r, echo = TRUE}
+data(volcano)
+plot_ly(z = volcano, type = "surface")
+```
+
+## Leaflet
+
+```{r, echo=FALSE}
+library(leaflet)
+my_university <- leaflet() %>% 
+    addTiles() %>%
+    addMarkers(lat = 60.204566, lng =  24.961499, popup = "Kumpula Campus, University of Helsinki")
+my_university
+```
+
+
